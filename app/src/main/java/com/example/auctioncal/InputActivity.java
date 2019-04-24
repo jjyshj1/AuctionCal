@@ -15,7 +15,9 @@ public class InputActivity extends AppCompatActivity {
 
     ActivityInputBinding act;
     String strmoney = "";
-    String intmoney;
+    String displaystrmoney = "";
+    int intmoney;
+    String strintmoney;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +32,11 @@ public class InputActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                strintmoney = String.valueOf(intmoney);
+
                 Intent intent = new Intent();
-                intent.putExtra("strmoney",strmoney);
-                intent.putExtra("intmoney",intmoney);
+                intent.putExtra("strmoney",displaystrmoney);
+                intent.putExtra("strintmoney",strintmoney);
 
                 setResult(Activity.RESULT_OK, intent);
                 finish();
@@ -43,7 +47,11 @@ public class InputActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 strmoney="";
+                displaystrmoney="";
                 act.displayTxt.setText("");
+                act.hundredMillion.setEnabled(true);
+                act.tenMillion.setEnabled(true);
+                act.oneMillion.setEnabled(true);
             }
         });
     }
@@ -56,8 +64,9 @@ public class InputActivity extends AppCompatActivity {
         act.num1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                strmoney = strmoney+"1";
-                act.displayTxt.setText(strmoney);
+                    strmoney = strmoney + "1";
+                    act.displayTxt.setText(strmoney);
+
             }
         });
         act.num2.setOnClickListener(new View.OnClickListener() {
@@ -132,9 +141,15 @@ public class InputActivity extends AppCompatActivity {
         act.hundredMillion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intmoney =  String.valueOf(Integer.parseInt(strmoney)*100000000);
-                strmoney = strmoney+"억";
-                act.displayTxt.setText(strmoney);
+                //intmoney =  String.valueOf(Integer.parseInt(strmoney)*100000000);
+
+                if (strmoney!="") {
+                    intmoney = Integer.parseInt(strmoney) * 100000000;
+                    displaystrmoney = strmoney + "억";
+                    act.displayTxt.setText(displaystrmoney);
+                    strmoney = "";
+                    act.hundredMillion.setEnabled(false);
+                }
 
             }
         });
@@ -142,18 +157,33 @@ public class InputActivity extends AppCompatActivity {
         act.tenMillion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intmoney = String.valueOf(Integer.parseInt(strmoney)*10000000);
-                strmoney = strmoney+"천만";
-                act.displayTxt.setText(strmoney);
+                //intmoney = intmoney + String.valueOf(Integer.parseInt(strmoney)*10000000);
+
+                if (strmoney!="") {
+                    intmoney = intmoney + Integer.parseInt(strmoney) * 10000000;
+                    displaystrmoney = displaystrmoney + strmoney + "천";
+                    act.displayTxt.setText(displaystrmoney);
+                    strmoney = "";
+                    act.hundredMillion.setEnabled(false);
+                    act.tenMillion.setEnabled(false);
+                }
+
             }
         });
 
         act.oneMillion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intmoney = String.valueOf(Integer.parseInt(strmoney)*1000000);
-                strmoney = strmoney+"백만";
-                act.displayTxt.setText(strmoney);
+                //intmoney = intmoney + String.valueOf(Integer.parseInt(strmoney)*1000000);
+
+                if (strmoney!="") {
+                    intmoney = intmoney + Integer.parseInt(strmoney) * 1000000;
+                    displaystrmoney = displaystrmoney + strmoney + "백만";
+                    act.displayTxt.setText(displaystrmoney);
+                    act.hundredMillion.setEnabled(false);
+                    act.tenMillion.setEnabled(false);
+                    act.oneMillion.setEnabled(false);
+                }
             }
         });
 

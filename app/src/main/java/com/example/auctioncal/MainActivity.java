@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         String strmoney = data.getStringExtra("strmoney");
-        String intmoney = data.getStringExtra("intmoney");
+        String intmoney = data.getStringExtra("strintmoney");
         int money = Integer.parseInt(intmoney);
 
 
