@@ -1,9 +1,7 @@
 package com.example.auctioncal;
 
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,15 +9,19 @@ import android.widget.Toast;
 
 import com.example.auctioncal.databinding.ActivityMainBinding;
 
-import org.w3c.dom.Text;
-
 public class MainActivity extends AppCompatActivity {
 
 
     int gjg, ncg, bjg,monthrent,ron,monthinterest,mymoney,monthincome, yearincome;
     int i;
-
-
+    int money;
+    String newstrbjg;
+    String strmoney;
+    //String intmoney;
+    int intmoney;
+    String strinvest;
+    float interestrate;
+    String strinterestrate;
 
 
     ActivityMainBinding actm;
@@ -45,48 +47,116 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        actm.bjgTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentbjg = new Intent(MainActivity.this, BjgActivity.class);
+                startActivityForResult(intentbjg,103);
+                //startActivity(intent);
+            }
+        });
+
+        actm.interestrateTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, InterestrateActivity.class);
+                startActivityForResult(intent, 104);
+            }
+        });
+
         actm.calBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //gjg = Integer.parseInt(actm.gjgTxt.getText().toString());
                 //ncg = Integer.parseInt(actm.ncgTxt.getText().toString());
-                bjg = 20000000;
+                //bjg = 20000000;
 
-                monthrent =(int)((int)(((int)(gjg*0.78)-bjg)*0.035)/12);
+                //monthrent =((int)((int)((int)(((int)(gjg*0.78)-bjg)*0.035)/12)/10000))*10000;
+                  monthrent =((int)((((gjg*0.78)-bjg)*0.045)/12)/10000)*10000;
                 //String strmonthrent = String.valueOf(monthrent);
-                actm.monthrentTxt.setText(String.format("%,d",monthrent));
+                actm.monthrentTxt.setText(String.format("%,d만원",monthrent/10000));
                 //actm.monthrentTxt.setText(String.valueOf(monthrent));
 
-                ron = (int)(ncg*0.07);
-                actm.ronTxt.setText(String.valueOf(ron));
-                monthinterest = (int)(ron*0.05/12);
-                actm.monthinterestTxt.setText(String.valueOf(monthinterest));
+                ron = (int)(ncg*0.7);
+               ///// interestrate=Integer.parseInt(strinterestrate)/100;
+                actm.ronTxt.setText(String.format("%,d만원", ron/10000));
+                monthinterest =((int)(ron*interestrate/12)/10000)*10000;
+                actm.monthinterestTxt.setText(String.format("%,d만원",monthinterest/10000));
+                //////actm.interestrateTxt.setText(String.format("%d프로",interestrate));
 
+                mymoney = ((int)(ncg*1.04-ron-bjg)/10000)*10000;//낙찰가에 경매비용(세금, 수수료) 반영하고 대출액 빼면 내가 보유해야할 현금
+                actm.mymoneyTxt.setText(String.format("%,d만원",mymoney/10000));
 
+                monthincome = monthrent-monthinterest;
+                actm.monthincomeTxt.setText(String.format("%,d만원",monthincome/10000));
+
+                yearincome = monthincome*12;
+                actm.yearincomeTxt.setText(String.format("%,d만원",yearincome/10000));
+
+                float invest = (float)(yearincome*100)/mymoney;
+                if (invest > 6){
+                    strinvest = "적격";
+                }
+                else{
+                    strinvest = "부적격";
+                }
+
+                actm.descriptionTxt.setText(String.format("년 수익률  %.2f 퍼센트 / 투자 %s", invest, strinvest));
 
             }
         });
+
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        String strmoney = data.getStringExtra("strmoney");
-        String intmoney = data.getStringExtra("strintmoney");
-        int money = Integer.parseInt(intmoney);
+
+         if(requestCode==103){
+            newstrbjg = data.getStringExtra("strbjg");
+            bjg = data.getIntExtra("bjg",0);
+            actm.bjgTxt.setText(newstrbjg);
+
+             Toast.makeText(this, String.valueOf(bjg), Toast.LENGTH_SHORT).show();
+        }
 
 
-        if (requestCode==101){
+        else if (requestCode==101){
+            strmoney = data.getStringExtra("strmoney");
+            //intmoney = data.getStringExtra("strintmoney");
+            intmoney = data.getIntExtra("intmoney",0);
+            // money = Integer.parseInt(intmoney);/////////
+
             actm.gjgTxt.setText(strmoney);
-            gjg = money;
+            //gjg = money;
+             gjg = intmoney;
             Toast.makeText(this,String.valueOf(gjg), Toast.LENGTH_SHORT).show();
         }
         else if(requestCode==102){
+            strmoney = data.getStringExtra("strmoney");
+            //intmoney = data.getStringExtra("strintmoney");
+             intmoney = data.getIntExtra("intmoney",0);
+            //money = Integer.parseInt(intmoney);
+
             actm.ncgTxt.setText(strmoney);
-            ncg = money;
+            //ncg = money;
+             ncg=intmoney;
             Toast.makeText(this,String.valueOf(ncg), Toast.LENGTH_SHORT).show();
         }
+         else if(requestCode==104){
+             strmoney = data.getStringExtra("strmoney");
+             //intmoney = data.getStringExtra("strintmoney");
+             intmoney = data.getIntExtra("intmoney",0);
+             //money = Integer.parseInt(intmoney);
+
+             actm.ncgTxt.setText(strmoney);
+             //ncg = money;
+             ncg=intmoney;
+             Toast.makeText(this,String.valueOf(ncg), Toast.LENGTH_SHORT).show();
+         }
+
     }
 }
