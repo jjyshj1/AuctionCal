@@ -195,18 +195,22 @@ public class InputActivity extends AppCompatActivity {
 
                 if (strmoney!="") {
                     //intmoney = Integer.parseInt(strmoney) * 100000000;
-                    intmoney = i*100000000;
-                    //displaystrmoney = strmoney + "억";
-                    strmoney = strmoney+"억";
-                    //act.displayTxt.setText(displaystrmoney);
-                    act.displayTxt.setText(strmoney);
-                    ///////strmoney = "";
-                    act.hundredMillion.setEnabled(false);
-                    numcount=0;
-                    act.tenMillion.setEnabled(true);
-                    act.oneMillion.setEnabled(true);
+                    if (i < 22){
+                        intmoney = i*100000000;
+                        //displaystrmoney = strmoney + "억";
+                        strmoney = strmoney+"억";
+                        //act.displayTxt.setText(displaystrmoney);
+                        act.displayTxt.setText(strmoney);
+                        ///////strmoney = "";
+                        act.hundredMillion.setEnabled(false);
+                        numcount=0;
+                        act.tenMillion.setEnabled(true);
+                        act.oneMillion.setEnabled(true);
 
-                    act.intmoneyTxt.setText(String.format("%,d",intmoney));
+                        act.intmoneyTxt.setText(String.format("%,d",intmoney));
+                    }
+                    else{act.displayTxt.setText("21억 초과 물건은 취급하지 않습니다.");
+                          }
                 }
                 numredy = false;
 
