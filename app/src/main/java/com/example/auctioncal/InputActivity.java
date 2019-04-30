@@ -17,7 +17,6 @@ public class InputActivity extends AppCompatActivity {
     String strmoney = "";
     String displaystrmoney = "";
     int intmoney;
-    String strintmoney;
     int i;
     boolean numredy = false;
     int numcount;
@@ -26,7 +25,6 @@ public class InputActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         act= DataBindingUtil.setContentView(this,R.layout.activity_input);
 
         moneyinput();
@@ -35,15 +33,15 @@ public class InputActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //strintmoney = String.valueOf(intmoney);
+
+                intmoneycal();
 
                 Intent intent = new Intent();
-                //intent.putExtra("strmoney",displaystrmoney);
-                //intent.putExtra("strintmoney",strintmoney);
                 intent.putExtra("strmoney",strmoney);
                 intent.putExtra("intmoney",intmoney);
 
                 setResult(Activity.RESULT_OK, intent);
+                act.deleteBtn.performClick();
                 finish();
             }
         });
@@ -83,7 +81,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
                 strmoney = strmoney + "1";
                 act.displayTxt.setText(strmoney);
-                i=Integer.parseInt(strmoney);
+                //i=Integer.parseInt(strmoney);
                 numredy = true;
                 numcountCheck();
 
@@ -95,7 +93,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
                 strmoney = strmoney+"2";
                 act.displayTxt.setText(strmoney);
-                i=Integer.parseInt(strmoney);
+               // i=Integer.parseInt(strmoney);
                 numredy = true;
                 numcountCheck();
             }
@@ -105,7 +103,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
                 strmoney = strmoney+"3";
                 act.displayTxt.setText(strmoney);
-                i=Integer.parseInt(strmoney);
+             //   i=Integer.parseInt(strmoney);
                 numredy = true;
                 numcountCheck();
             }
@@ -115,7 +113,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
                 strmoney = strmoney+"4";
                 act.displayTxt.setText(strmoney);
-                i=Integer.parseInt(strmoney);
+             //   i=Integer.parseInt(strmoney);
                 numredy = true;
                 numcountCheck();
             }
@@ -125,7 +123,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
                 strmoney = strmoney+"5";
                 act.displayTxt.setText(strmoney);
-                i=Integer.parseInt(strmoney);
+            //    i=Integer.parseInt(strmoney);
                 numredy = true;
                 numcountCheck();
             }
@@ -135,7 +133,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
                 strmoney = strmoney+"6";
                 act.displayTxt.setText(strmoney);
-                i=Integer.parseInt(strmoney);
+           //    i=Integer.parseInt(strmoney);
                 numredy = true;
                 numcountCheck();
             }
@@ -145,7 +143,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
                 strmoney = strmoney+"7";
                 act.displayTxt.setText(strmoney);
-                i=Integer.parseInt(strmoney);
+            //    i=Integer.parseInt(strmoney);
                 numredy = true;
                 numcountCheck();
             }
@@ -155,7 +153,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
                 strmoney = strmoney+"8";
                 act.displayTxt.setText(strmoney);
-                i=Integer.parseInt(strmoney);
+           //     i=Integer.parseInt(strmoney);
                 numredy = true;
                 numcountCheck();
             }
@@ -165,7 +163,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
                 strmoney = strmoney+"9";
                 act.displayTxt.setText(strmoney);
-                i=Integer.parseInt(strmoney);
+           //     i=Integer.parseInt(strmoney);
                 numredy = true;
                 numcountCheck();
             }
@@ -175,7 +173,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (strmoney != "") {
                     strmoney = strmoney + "0";
-                    i=Integer.parseInt(strmoney);
+            //        i=Integer.parseInt(strmoney);
                     numredy = true;
                     numcountCheck();
 
@@ -190,27 +188,22 @@ public class InputActivity extends AppCompatActivity {
         act.hundredMillion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //intmoney =  String.valueOf(Integer.parseInt(strmoney)*100000000);
+                 if (strmoney!="") {
 
-
-                if (strmoney!="") {
-                    //intmoney = Integer.parseInt(strmoney) * 100000000;
-                    if (i < 22){
-                        intmoney = i*100000000;
-                        //displaystrmoney = strmoney + "억";
+              //      if (i < 22){
+            //            intmoney = i*100000000;
                         strmoney = strmoney+"억";
-                        //act.displayTxt.setText(displaystrmoney);
                         act.displayTxt.setText(strmoney);
-                        ///////strmoney = "";
+
                         act.hundredMillion.setEnabled(false);
                         numcount=0;
                         act.tenMillion.setEnabled(true);
                         act.oneMillion.setEnabled(true);
 
-                        act.intmoneyTxt.setText(String.format("%,d",intmoney));
-                    }
-                    else{act.displayTxt.setText("21억 초과 물건은 취급하지 않습니다.");
-                          }
+             //           act.intmoneyTxt.setText(String.format("%,d",intmoney));
+//                    }
+//                    else{act.displayTxt.setText("21억 초과 물건은 취급하지 않습니다.");
+//                          }
                 }
                 numredy = false;
 
@@ -220,23 +213,21 @@ public class InputActivity extends AppCompatActivity {
         act.tenMillion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //intmoney = intmoney + String.valueOf(Integer.parseInt(strmoney)*10000000);
 
                 if (numredy==true){
-                    Toast.makeText(InputActivity.this, String.valueOf(numredy), Toast.LENGTH_SHORT).show();
-                //if (strmoney!="") {
-                    //intmoney = intmoney + Integer.parseInt(strmoney) * 10000000;
-                    intmoney = intmoney + (i*10000000);
-                    //displaystrmoney = displaystrmoney + strmoney + "천";
-                    strmoney = strmoney + "천만";
-                    //act.displayTxt.setText(displaystrmoney);
+                    //Toast.makeText(InputActivity.this, String.valueOf(numredy), Toast.LENGTH_SHORT).show();
+
+              //      intmoney = intmoney + (i*10000000);
+
+                    strmoney = strmoney + "천";
+
                     act.displayTxt.setText(strmoney);
-                    //////strmoney = "";
+
                     numcount=0;
                     act.hundredMillion.setEnabled(false);
                     act.tenMillion.setEnabled(false);
 
-                    act.intmoneyTxt.setText(String.format("%,d",intmoney));
+             //       act.intmoneyTxt.setText(String.format("%,d",intmoney));
                 }
                 numredy = false;
 
@@ -246,17 +237,16 @@ public class InputActivity extends AppCompatActivity {
         act.oneMillion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //intmoney = intmoney + String.valueOf(Integer.parseInt(strmoney)*1000000);
+
                   if (numredy == true){
-                //if (strmoney!="") {
-                    //intmoney = intmoney + Integer.parseInt(strmoney) * 1000000;
-                    intmoney = intmoney + (i*1000000);
-                    //displaystrmoney = displaystrmoney + strmoney + "백만";
+
+               //     intmoney = intmoney + (i*1000000);
+
                     strmoney = strmoney + "백만";
-                    //act.displayTxt.setText(displaystrmoney);
+
                     act.displayTxt.setText(strmoney);
 
-                      act.intmoneyTxt.setText(String.format("%,d",intmoney));
+                //    act.intmoneyTxt.setText(String.format("%,d",intmoney));
 
                     act.hundredMillion.setEnabled(false);
                     act.tenMillion.setEnabled(false);
@@ -279,17 +269,28 @@ public class InputActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String text = act.displayTxt.getText().toString();
 
-                if(text.length() <= 1){
+
+                if(strmoney.length() <= 1){
                     act.deleteBtn.performClick();
                 }
-                else{
-                    act.displayTxt.setText(text.substring(0,text.length()-1));
-                    strmoney = act.displayTxt.getText().toString();
+                else {
+                    act.displayTxt.setText(strmoney.substring(0, strmoney.length() - 1));
 
+                    int ihm = strmoney.indexOf("억");
+                    int itm = strmoney.indexOf("천");
+                    int im = strmoney.indexOf("백");
+                    Toast.makeText(InputActivity.this, String.format("im : %d  / text.length() : %d", ihm, strmoney.length() - 3), Toast.LENGTH_SHORT).show();
+                    if (ihm == strmoney.length() - 3) {
+                        act.tenMillion.setEnabled(true);
+                        act.oneMillion.setEnabled(true);
+                    }
+
+                    if(itm == strmoney.length()-3){
+                        act.oneMillion.setEnabled(true);
+                    }
                 }
-
+                strmoney = act.displayTxt.getText().toString();
 
             }
         });
@@ -301,5 +302,36 @@ public class InputActivity extends AppCompatActivity {
             act.tenMillion.setEnabled(false);
             act.oneMillion.setEnabled(false);
         }
+    }
+
+    void intmoneycal(){
+        String text = act.displayTxt.getText().toString();
+        int ihm = text.indexOf("억");
+        int itm = text.indexOf("천");
+        int im = text.indexOf("백");
+
+        if(ihm > 0){
+            String strhm = text.substring(0,ihm);
+            int inthm = Integer.parseInt(strhm);
+            intmoney = inthm*100000000;
+        }
+
+
+        if(itm > 0){
+            String strtm = text.substring(itm-1,itm);
+            int inttm = Integer.parseInt(strtm);
+            intmoney = intmoney+(inttm*10000000);
+        }
+
+        if(im > 0){
+            String strm = text.substring(im-1,im);
+            int intm = Integer.parseInt(strm);
+            intmoney = intmoney + (intm*1000000);
+        }
+
+
+        //intmoney = (inthm*100000000)+(inttm*10000000)+(intm*1000000);
+        Toast.makeText(this, String.valueOf(intmoney), Toast.LENGTH_SHORT).show();
+
     }
 }
