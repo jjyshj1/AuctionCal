@@ -74,8 +74,11 @@ public class InputActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
 
-
+        super.onBackPressed();
+    }
 
     void moneyinput(){
 

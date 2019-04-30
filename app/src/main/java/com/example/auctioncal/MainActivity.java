@@ -1,5 +1,6 @@
 package com.example.auctioncal;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
@@ -114,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+      if(resultCode == Activity.RESULT_OK){     //두번째 액티비티가 결과값을 넘기지 않고 종료되면 메인액티비티도 종료되버림..이를 방지하기 위함
+
+
 
          if(requestCode==103){
             newstrbjg = data.getStringExtra("strbjg");
@@ -157,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
              ncg=intmoney;
             // Toast.makeText(this,String.valueOf(ncg), Toast.LENGTH_SHORT).show();
          }
+      }
+
 
     }
 }
