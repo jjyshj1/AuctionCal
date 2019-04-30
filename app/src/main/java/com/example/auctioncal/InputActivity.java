@@ -34,15 +34,16 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                intmoneycal();
+                    intmoneycal();
 
-                Intent intent = new Intent();
-                intent.putExtra("strmoney",strmoney);
-                intent.putExtra("intmoney",intmoney);
+                    Intent intent = new Intent();
+                    intent.putExtra("strmoney",strmoney);
+                    intent.putExtra("intmoney",intmoney);
 
-                setResult(Activity.RESULT_OK, intent);
-                act.deleteBtn.performClick();
-                finish();
+                    setResult(Activity.RESULT_OK, intent);
+                    act.deleteBtn.performClick();
+                    finish();
+
             }
         });
 
@@ -65,8 +66,10 @@ public class InputActivity extends AppCompatActivity {
                 act.num8.setEnabled(true);
                 act.num9.setEnabled(true);
                 act.num0.setEnabled(true);
+                act.inputBtn.setEnabled(false);
                 numredy = false;
                 numcount = 0;
+                intmoney = 0;
             }
         });
     }
@@ -190,7 +193,7 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
                  if (strmoney!="") {
 
-              //      if (i < 22){
+                    if (Integer.parseInt(strmoney) < 22){
             //            intmoney = i*100000000;
                         strmoney = strmoney+"억";
                         act.displayTxt.setText(strmoney);
@@ -199,11 +202,14 @@ public class InputActivity extends AppCompatActivity {
                         numcount=0;
                         act.tenMillion.setEnabled(true);
                         act.oneMillion.setEnabled(true);
+                        act.inputBtn.setEnabled(true);
 
              //           act.intmoneyTxt.setText(String.format("%,d",intmoney));
-//                    }
-//                    else{act.displayTxt.setText("21억 초과 물건은 취급하지 않습니다.");
-//                          }
+                    }
+                    else{
+                        act.deleteBtn.performClick();
+                        act.displayTxt.setText("21억 초과 물건은 취급하지 않습니다.");
+                          }
                 }
                 numredy = false;
 
@@ -226,6 +232,7 @@ public class InputActivity extends AppCompatActivity {
                     numcount=0;
                     act.hundredMillion.setEnabled(false);
                     act.tenMillion.setEnabled(false);
+                    act.inputBtn.setEnabled(true);
 
              //       act.intmoneyTxt.setText(String.format("%,d",intmoney));
                 }
@@ -261,6 +268,7 @@ public class InputActivity extends AppCompatActivity {
                     act.num8.setEnabled(false);
                     act.num9.setEnabled(false);
                     act.num0.setEnabled(false);
+                    act.inputBtn.setEnabled(true);
                 }
             }
         });
@@ -280,7 +288,7 @@ public class InputActivity extends AppCompatActivity {
                     int ihm = strmoney.indexOf("억");
                     int itm = strmoney.indexOf("천");
                     int im = strmoney.indexOf("백");
-                    Toast.makeText(InputActivity.this, String.format("im : %d  / text.length() : %d", ihm, strmoney.length() - 3), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(InputActivity.this, String.format("im : %d  / text.length() : %d", ihm, strmoney.length() - 3), Toast.LENGTH_SHORT).show();
                     if (ihm == strmoney.length() - 3) {
                         act.tenMillion.setEnabled(true);
                         act.oneMillion.setEnabled(true);
@@ -310,28 +318,29 @@ public class InputActivity extends AppCompatActivity {
         int itm = text.indexOf("천");
         int im = text.indexOf("백");
 
-        if(ihm > 0){
-            String strhm = text.substring(0,ihm);
-            int inthm = Integer.parseInt(strhm);
-            intmoney = inthm*100000000;
-        }
+            if (ihm > 0) {
+                String strhm = text.substring(0, ihm);
+                int inthm = Integer.parseInt(strhm);
+                intmoney = inthm * 100000000;
 
+            }
 
-        if(itm > 0){
-            String strtm = text.substring(itm-1,itm);
-            int inttm = Integer.parseInt(strtm);
-            intmoney = intmoney+(inttm*10000000);
-        }
+            if (itm > 0) {
+                String strtm = text.substring(itm - 1, itm);
+                int inttm = Integer.parseInt(strtm);
+                intmoney = intmoney + (inttm * 10000000);
+            }
 
-        if(im > 0){
-            String strm = text.substring(im-1,im);
-            int intm = Integer.parseInt(strm);
-            intmoney = intmoney + (intm*1000000);
-        }
+            if (im > 0) {
+                String strm = text.substring(im - 1, im);
+                int intm = Integer.parseInt(strm);
+                intmoney = intmoney + (intm * 1000000);
+            }
+
 
 
         //intmoney = (inthm*100000000)+(inttm*10000000)+(intm*1000000);
-        Toast.makeText(this, String.valueOf(intmoney), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.format("%,d",intmoney), Toast.LENGTH_SHORT).show();
 
     }
 }

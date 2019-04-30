@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             bjg = data.getIntExtra("bjg",0);
             actm.bjgTxt.setText(newstrbjg);
 
-             Toast.makeText(this, String.valueOf(bjg), Toast.LENGTH_SHORT).show();
+          //   Toast.makeText(this, String.valueOf(bjg), Toast.LENGTH_SHORT).show();
         }
 
 
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             actm.gjgTxt.setText(strmoney);
             //gjg = money;
              gjg = intmoney;
-            Toast.makeText(this,String.valueOf(gjg), Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this,String.valueOf(gjg), Toast.LENGTH_SHORT).show();
         }
         else if(requestCode==102){
             strmoney = data.getStringExtra("strmoney");
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             actm.ncgTxt.setText(strmoney);
             //ncg = money;
              ncg=intmoney;
-            Toast.makeText(this,String.valueOf(ncg), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this,String.valueOf(ncg), Toast.LENGTH_SHORT).show();
         }
          else if(requestCode==104){
              strmoney = data.getStringExtra("strmoney");
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
              actm.ncgTxt.setText(strmoney);
              //ncg = money;
              ncg=intmoney;
-             Toast.makeText(this,String.valueOf(ncg), Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this,String.valueOf(ncg), Toast.LENGTH_SHORT).show();
          }
 
     }
