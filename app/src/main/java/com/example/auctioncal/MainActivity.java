@@ -3,6 +3,7 @@ package com.example.auctioncal;
 import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -69,41 +70,47 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //gjg = Integer.parseInt(actm.gjgTxt.getText().toString());
-                //ncg = Integer.parseInt(actm.ncgTxt.getText().toString());
-                //bjg = 20000000;
+                if(actm.descriptionTxt != null){
+                    monthrent =((int)((((gjg*0.78)-bjg)*0.045)/12)/10000)*10000;
 
-                //monthrent =((int)((int)((int)(((int)(gjg*0.78)-bjg)*0.035)/12)/10000))*10000;
-                  monthrent =((int)((((gjg*0.78)-bjg)*0.045)/12)/10000)*10000;
-                //String strmonthrent = String.valueOf(monthrent);
-                actm.monthrentTxt.setText(String.format("%,d만원",monthrent/10000));
-                //actm.monthrentTxt.setText(String.valueOf(monthrent));
+                    actm.monthrentTxt.setText(String.format("%,d만원",monthrent/10000));
 
-                ron = (int)(ncg*0.7);
-               ///// interestrate=Integer.parseInt(strinterestrate)/100;
-                actm.ronTxt.setText(String.format("%,d만원", ron/10000));
-                monthinterest =((int)(ron*interestrate/100/12)/10000)*10000;
-                actm.monthinterestTxt.setText(String.format("%,d만원",monthinterest/10000));
-                //////actm.interestrateTxt.setText(String.format("%d프로",interestrate));
 
-                mymoney = ((int)(ncg*1.04-ron-bjg)/10000)*10000;//낙찰가에 경매비용(세금, 수수료) 반영하고 대출액 빼면 내가 보유해야할 현금
-                actm.mymoneyTxt.setText(String.format("%,d만원",mymoney/10000));
+                    ron = (int)(ncg*0.7);
 
-                monthincome = monthrent-monthinterest;
-                actm.monthincomeTxt.setText(String.format("%,d만원",monthincome/10000));
+                    actm.ronTxt.setText(String.format("%,d만원", ron/10000));
+                    monthinterest =((int)(ron*interestrate/100/12)/10000)*10000;
+                    actm.monthinterestTxt.setText(String.format("%,d만원",monthinterest/10000));
 
-                yearincome = monthincome*12;
-                actm.yearincomeTxt.setText(String.format("%,d만원",yearincome/10000));
 
-                float invest = (float)(yearincome*100)/mymoney;
-                if (invest > 6){
-                    strinvest = "적격";
+                    mymoney = ((int)(ncg*1.04-ron-bjg)/10000)*10000;//낙찰가에 경매비용(세금, 수수료) 반영하고 대출액 빼면 내가 보유해야할 현금
+                    actm.mymoneyTxt.setText(String.format("%,d만원",mymoney/10000));
+
+                    monthincome = monthrent-monthinterest;
+                    actm.monthincomeTxt.setText(String.format("%,d만원",monthincome/10000));
+
+                    yearincome = monthincome*12;
+                    actm.yearincomeTxt.setText(String.format("%,d만원",yearincome/10000));
+
+                    float invest = (float)(yearincome*100)/mymoney;
+                    if (invest > 6){
+                        strinvest = "적격";
+                        actm.descriptionTxt.setBackgroundColor(Color.BLUE);
+                        actm.descriptionTxt.setTextColor(Color.WHITE);
+                    }
+                    else{
+                        strinvest = "부적격";
+                        actm.descriptionTxt.setBackgroundColor(Color.RED);
+                    }
+
+                    actm.descriptionTxt.setText(String.format("년 수익률  %.2f 퍼센트 / 투자 %s", invest, strinvest));
+
                 }
+
                 else{
-                    strinvest = "부적격";
+
                 }
 
-                actm.descriptionTxt.setText(String.format("년 수익률  %.2f 퍼센트 / 투자 %s", invest, strinvest));
 
             }
         });

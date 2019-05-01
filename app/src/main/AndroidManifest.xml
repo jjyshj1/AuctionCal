@@ -10,6 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".InterestrateActivity"
+            android:label="대출 이율"
             android:theme="@style/Base.V7.Theme.AppCompat.Dialog" />
         <activity
             android:name=".BjgActivity"
