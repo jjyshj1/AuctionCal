@@ -184,10 +184,11 @@
                     android:id="@+id/interestrateTxt"
                     android:layout_width="67dp"
                     android:layout_height="30dp"
-                    android:textAlignment="textStart"
+                    android:textAlignment="center"
                     android:textSize="20dp"
                     android:hint=""
                     android:gravity="center"
+                    android:textColor="#FFFFFF"
                     android:background="@android:drawable/bottom_bar"/>
 
                 <TextView

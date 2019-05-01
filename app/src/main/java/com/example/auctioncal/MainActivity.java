@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 ron = (int)(ncg*0.7);
                ///// interestrate=Integer.parseInt(strinterestrate)/100;
                 actm.ronTxt.setText(String.format("%,d만원", ron/10000));
-                monthinterest =((int)(ron*interestrate/12)/10000)*10000;
+                monthinterest =((int)(ron*interestrate/100/12)/10000)*10000;
                 actm.monthinterestTxt.setText(String.format("%,d만원",monthinterest/10000));
                 //////actm.interestrateTxt.setText(String.format("%d프로",interestrate));
 
@@ -117,8 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
       if(resultCode == Activity.RESULT_OK){     //두번째 액티비티가 결과값을 넘기지 않고 종료되면 메인액티비티도 종료되버림..이를 방지하기 위함
 
-
-
          if(requestCode==103){
             newstrbjg = data.getStringExtra("strbjg");
             bjg = data.getIntExtra("bjg",0);
@@ -151,15 +149,11 @@ public class MainActivity extends AppCompatActivity {
            // Toast.makeText(this,String.valueOf(ncg), Toast.LENGTH_SHORT).show();
         }
          else if(requestCode==104){
-             strmoney = data.getStringExtra("strmoney");
-             //intmoney = data.getStringExtra("strintmoney");
-             intmoney = data.getIntExtra("intmoney",0);
-             //money = Integer.parseInt(intmoney);
+             interestrate = data.getFloatExtra("interest",0);
 
-             actm.ncgTxt.setText(strmoney);
-             //ncg = money;
-             ncg=intmoney;
-            // Toast.makeText(this,String.valueOf(ncg), Toast.LENGTH_SHORT).show();
+             Toast.makeText(this, String.valueOf(interestrate), Toast.LENGTH_SHORT).show();
+             actm.interestrateTxt.setText(String.valueOf(interestrate)+" %");
+
          }
       }
 
