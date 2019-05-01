@@ -224,9 +224,6 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (numredy==true){
-                    //Toast.makeText(InputActivity.this, String.valueOf(numredy), Toast.LENGTH_SHORT).show();
-
-              //      intmoney = intmoney + (i*10000000);
 
                     strmoney = strmoney + "천";
 
@@ -237,8 +234,7 @@ public class InputActivity extends AppCompatActivity {
                     act.tenMillion.setEnabled(false);
                     act.inputBtn.setEnabled(true);
 
-             //       act.intmoneyTxt.setText(String.format("%,d",intmoney));
-                }
+                         }
                 numredy = false;
 
             }
@@ -250,13 +246,9 @@ public class InputActivity extends AppCompatActivity {
 
                   if (numredy == true){
 
-               //     intmoney = intmoney + (i*1000000);
-
                     strmoney = strmoney + "백만";
 
                     act.displayTxt.setText(strmoney);
-
-                //    act.intmoneyTxt.setText(String.format("%,d",intmoney));
 
                     act.hundredMillion.setEnabled(false);
                     act.tenMillion.setEnabled(false);
@@ -291,7 +283,7 @@ public class InputActivity extends AppCompatActivity {
                     int ihm = strmoney.indexOf("억");
                     int itm = strmoney.indexOf("천");
                     int im = strmoney.indexOf("백");
-                    //Toast.makeText(InputActivity.this, String.format("im : %d  / text.length() : %d", ihm, strmoney.length() - 3), Toast.LENGTH_SHORT).show();
+
                     if (ihm == strmoney.length() - 3) {
                         act.tenMillion.setEnabled(true);
                         act.oneMillion.setEnabled(true);
@@ -339,11 +331,6 @@ public class InputActivity extends AppCompatActivity {
                 int intm = Integer.parseInt(strm);
                 intmoney = intmoney + (intm * 1000000);
             }
-
-
-
-        //intmoney = (inthm*100000000)+(inttm*10000000)+(intm*1000000);
-        Toast.makeText(this, String.format("%,d",intmoney), Toast.LENGTH_SHORT).show();
 
     }
 }

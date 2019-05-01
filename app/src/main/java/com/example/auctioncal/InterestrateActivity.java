@@ -29,11 +29,18 @@ public class InterestrateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         act = DataBindingUtil.setContentView(this,R.layout.activity_interestrate);
 
+        Intent intent = getIntent(); /*데이터 수신*/
+        float fpreinterest = intent.getExtras().getFloat("interest");
+        int preinterest = (int)(fpreinterest*100);
+        act.seekBar.setProgress(preinterest);
+        act.interestrateTxt.setText(String.valueOf(fpreinterest));
+
         act.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                  finterest = (float)(progress)/100;
                  act.interestrateTxt.setText(String.format("%5.2f",finterest));
+
             }
 
             @Override

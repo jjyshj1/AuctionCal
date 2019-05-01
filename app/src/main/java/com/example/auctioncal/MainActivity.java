@@ -19,10 +19,9 @@ public class MainActivity extends AppCompatActivity {
     int money;
     String newstrbjg;
     String strmoney;
-    //String intmoney;
     int intmoney;
     String strinvest;
-    float interestrate;
+    float interestrate=4.5f;
     String strinterestrate;
 
 
@@ -62,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, InterestrateActivity.class);
+                intent.putExtra("interest",interestrate);
                 startActivityForResult(intent, 104);
             }
         });
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     ron = (int)(ncg*0.7);
 
                     actm.ronTxt.setText(String.format("%,d만원", ron/10000));
+//                    Toast.makeText(MainActivity.this, String.format("%d,interestrate"), Toast.LENGTH_SHORT).show();
                     monthinterest =((int)(ron*interestrate/100/12)/10000)*10000;
                     actm.monthinterestTxt.setText(String.format("%,d만원",monthinterest/10000));
 
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         actm.descriptionTxt.setBackgroundColor(Color.RED);
                     }
 
-                    actm.descriptionTxt.setText(String.format("년 수익률  %.2f 퍼센트 / 투자 %s", invest, strinvest));
+                    actm.descriptionTxt.setText(String.format("년 수익률  %.2f"+"퍼센트"+" / 투자 %s", invest, strinvest));
 
                 }
 
@@ -129,36 +130,34 @@ public class MainActivity extends AppCompatActivity {
             bjg = data.getIntExtra("bjg",0);
             actm.bjgTxt.setText(newstrbjg);
 
-          //   Toast.makeText(this, String.valueOf(bjg), Toast.LENGTH_SHORT).show();
-        }
+               }
 
 
         else if (requestCode==101){
             strmoney = data.getStringExtra("strmoney");
-            //intmoney = data.getStringExtra("strintmoney");
+
             intmoney = data.getIntExtra("intmoney",0);
-            // money = Integer.parseInt(intmoney);/////////
+
 
             actm.gjgTxt.setText(strmoney);
-            //gjg = money;
+
              gjg = intmoney;
-          //  Toast.makeText(this,String.valueOf(gjg), Toast.LENGTH_SHORT).show();
+
         }
         else if(requestCode==102){
             strmoney = data.getStringExtra("strmoney");
-            //intmoney = data.getStringExtra("strintmoney");
+
              intmoney = data.getIntExtra("intmoney",0);
-            //money = Integer.parseInt(intmoney);
+
 
             actm.ncgTxt.setText(strmoney);
-            //ncg = money;
+
              ncg=intmoney;
-           // Toast.makeText(this,String.valueOf(ncg), Toast.LENGTH_SHORT).show();
+
         }
          else if(requestCode==104){
              interestrate = data.getFloatExtra("interest",0);
 
-             Toast.makeText(this, String.valueOf(interestrate), Toast.LENGTH_SHORT).show();
              actm.interestrateTxt.setText(String.valueOf(interestrate)+" %");
 
          }
