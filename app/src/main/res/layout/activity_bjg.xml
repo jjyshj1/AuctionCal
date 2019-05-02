@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:text="2천만원"
             android:textSize="20dp"
-            android:checked="true"/>
+            />
         <RadioButton
             android:id="@+id/btn3"
             android:layout_width="0dp"

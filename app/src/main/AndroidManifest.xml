@@ -22,7 +22,7 @@
             android:theme="@style/Base.V7.Theme.AppCompat.Dialog" />
         <activity
             android:name=".MainActivity"
-            android:label="간이_경매 계산기">
+            android:label="간이_경매 수익율 계산기">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

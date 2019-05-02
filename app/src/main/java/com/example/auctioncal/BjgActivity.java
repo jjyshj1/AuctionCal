@@ -17,14 +17,33 @@ import com.example.auctioncal.databinding.ActivityBjgBinding;
 public class BjgActivity extends AppCompatActivity {
     ActivityBjgBinding actg;
 
-   String strbjg="2천만원";
-   int bjg=20000000;
-
+   String strbjg;//="2천만원";
+   int bjg;//=20000000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         actg = DataBindingUtil.setContentView(this,R.layout.activity_bjg);
+
+        Intent intent = getIntent(); /*데이터 수신*/
+        String strprebjg = intent.getExtras().getString("bjg");
+        if(strprebjg.equals("3천만원")){
+            actg.btn1.setChecked(true);
+            strbjg = "3천만원";
+            bjg = 30000000;
+        }
+        else if(strprebjg.equals("2천만원")){
+            actg.btn2.setChecked(true);
+            strbjg = "2천만원";
+            bjg = 20000000;
+        }
+        else if(strprebjg.equals("1천만원")){
+            actg.btn3.setChecked(true);
+            strbjg = "1천만원";
+            bjg = 10000000;
+        }
+
+
 
         actg.bjgradiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -41,6 +60,7 @@ public class BjgActivity extends AppCompatActivity {
                     strbjg = "1천만원";
                     bjg = 10000000;
                 }
+
 
             }
         });

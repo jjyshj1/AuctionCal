@@ -14,14 +14,15 @@ import com.example.auctioncal.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
 
-    int gjg, ncg, bjg,monthrent,ron,monthinterest,mymoney,monthincome, yearincome;
-    int i;
+    int gjg, ncg, monthrent,ron,monthinterest,mymoney,monthincome, yearincome;
+    int bjg=20000000;
     int money;
     String newstrbjg;
     String strmoney;
     int intmoney;
     String strinvest;
     float interestrate=4.5f;
+
     String strinterestrate;
 
 
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentbjg = new Intent(MainActivity.this, BjgActivity.class);
+                String strbjg = actm.bjgTxt.getText().toString();
+                intentbjg.putExtra("bjg",strbjg);
                 startActivityForResult(intentbjg,103);
                 //startActivity(intent);
             }
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         actm.descriptionTxt.setBackgroundColor(Color.RED);
                     }
 
-                    actm.descriptionTxt.setText(String.format("년 수익률  %.2f"+"퍼센트"+" / 투자 %s", invest, strinvest));
+                    actm.descriptionTxt.setText(String.format("년 수익율  %.2f"+"퍼센트"+" / 투자 %s", invest, strinvest));
 
                 }
 
