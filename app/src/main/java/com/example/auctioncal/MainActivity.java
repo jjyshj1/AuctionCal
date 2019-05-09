@@ -101,13 +101,22 @@ public class MainActivity extends AppCompatActivity {
                         strinvest = "적격";
                         actm.descriptionTxt.setBackgroundColor(Color.BLUE);
                         actm.descriptionTxt.setTextColor(Color.WHITE);
+                        actm.descriptionTxt.setText(String.format("년 수익율  %.2f"+"퍼센트"+"  /  투자 %s", invest, strinvest));
                     }
                     else{
-                        strinvest = "부적격";
-                        actm.descriptionTxt.setBackgroundColor(Color.RED);
+                        if(mymoney<0){
+                            actm.descriptionTxt.setBackgroundColor(Color.BLUE);
+                            actm.descriptionTxt.setText("실 투자금이 필요없음.   투자권장!!!");
+                        }
+                        else{
+                            strinvest = "부적격";
+                            actm.descriptionTxt.setBackgroundColor(Color.RED);
+                            actm.descriptionTxt.setText(String.format("년 수익율  %.2f"+"퍼센트"+"  /  투자 %s", invest, strinvest));
+                        }
+
                     }
 
-                    actm.descriptionTxt.setText(String.format("년 수익율  %.2f"+"퍼센트"+" / 투자 %s", invest, strinvest));
+//                    actm.descriptionTxt.setText(String.format("년 수익율  %.2f"+"퍼센트"+"  /  투자 %s", invest, strinvest));
 
                 }
 
